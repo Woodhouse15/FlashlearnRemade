@@ -17,14 +17,20 @@ import org.bson.Document;
 import java.io.IOException;
 import java.util.Arrays;
 
-public class HelloApplication extends Application {
+public class MainMenu extends Application {
+    private static Stage primaryStage;
+
+    public static Stage getPrimaryStage(){
+        return primaryStage;
+    }
     @Override
     public void start(Stage stage) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("hello-view.fxml"));
+        primaryStage = stage;
+        FXMLLoader fxmlLoader = new FXMLLoader(MainMenu.class.getResource("main-menu-view.fxml"));
         Scene scene = new Scene(fxmlLoader.load(), 320, 240);
-        stage.setTitle("Hello!");
-        stage.setScene(scene);
-        stage.show();
+        primaryStage.setTitle("Hello!");
+        primaryStage.setScene(scene);
+        primaryStage.show();
     }
 
     public static void main(String[] args) {
@@ -43,9 +49,9 @@ public class HelloApplication extends Application {
         try (MongoClient mongoClient = MongoClients.create(settings)) {
             try {
                 MongoDatabase db = mongoClient.getDatabase("Users");
-                Document user = new Document().append("Eleanor",Integer.toHexString(Arrays.hashCode(password)));
+                Document user = new Document().append("Test",Integer.toHexString(Arrays.hashCode(password)));
                 System.out.println("Pinged your deployment. You successfully connected to MongoDB!");
-                db.getCollection("Eleanor").insertOne(user);
+                db.getCollection("Test").insertOne(user);
             } catch (MongoException e) {
                 e.printStackTrace();
             }
