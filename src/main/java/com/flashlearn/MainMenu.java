@@ -27,8 +27,8 @@ public class MainMenu extends Application {
     public void start(Stage stage) throws IOException {
         primaryStage = stage;
         FXMLLoader fxmlLoader = new FXMLLoader(MainMenu.class.getResource("main-menu-view.fxml"));
-        Scene scene = new Scene(fxmlLoader.load(), 320, 240);
-        primaryStage.setTitle("Hello!");
+        Scene scene = new Scene(fxmlLoader.load(), 600, 400);
+        primaryStage.setTitle("Flashlearn");
         primaryStage.setScene(scene);
         primaryStage.show();
     }
@@ -36,7 +36,8 @@ public class MainMenu extends Application {
     public static void main(String[] args) {
         launch();
         char[] password = new char[]{'h','e','l','l','o'};
-        System.out.println(Integer.toHexString(Arrays.hashCode(password)));
+
+        /*System.out.println(Integer.toHexString(Arrays.hashCode(password)));
         String connectionString = System.getenv("mongoDBflashlearn");
         ServerApi serverApi = ServerApi.builder()
                 .version(ServerApiVersion.V1)
@@ -55,6 +56,6 @@ public class MainMenu extends Application {
             } catch (MongoException e) {
                 e.printStackTrace();
             }
-        }
+        }*/
     }
 }
