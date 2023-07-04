@@ -18,15 +18,20 @@ public class MainMenuController {
     @FXML
     public Button signUpButton;
     @FXML
-    protected void logInClick(){
-
+    protected void logInClick() throws IOException {
+        Stage stage = (Stage) logInButton.getScene().getWindow();
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("login-view.fxml"));
+        Scene scene = new Scene(fxmlLoader.load(), 600, 400);
+        stage.setTitle("Flashlearn");
+        stage.setScene(scene);
+        stage.show();
     }
 
     @FXML
     protected void signUpClick() throws IOException {
-        Stage stage = (Stage) logInButton.getScene().getWindow();
+        Stage stage = (Stage) signUpButton.getScene().getWindow();
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("sign-up-view.fxml"));
-        Scene scene = new Scene(fxmlLoader.load(), 400, 600);
+        Scene scene = new Scene(fxmlLoader.load(), 600, 400);
         stage.setTitle("Flashlearn");
         stage.setScene(scene);
         stage.show();
