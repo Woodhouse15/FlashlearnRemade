@@ -12,13 +12,18 @@ import com.mongodb.ServerApiVersion;
 import com.mongodb.client.MongoClient;
 import com.mongodb.client.MongoClients;
 import com.mongodb.client.MongoDatabase;
+import org.bson.BsonDocument;
+import org.bson.BsonInt64;
 import org.bson.Document;
+import org.bson.conversions.Bson;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Arrays;
 
 public class MainMenu extends Application {
     private static Stage primaryStage;
+    private static MongoClient mongoClient;
 
     public static Stage getPrimaryStage(){
         return primaryStage;
@@ -33,11 +38,19 @@ public class MainMenu extends Application {
         primaryStage.show();
     }
 
-    public static void main(String[] args) {
-        launch();
-        char[] password = new char[]{'h','e','l','l','o'};
+    public static MongoDatabase getUserDataBase(){
+        return mongoClient.getDatabase("Users");
+    }
 
-        /*System.out.println(Integer.toHexString(Arrays.hashCode(password)));
+    public static boolean checkForDatabase(String dbName){
+        MongoDatabase m = getUserDataBase();
+        return m.listCollectionNames().into(new ArrayList<>()).contains(dbName);
+    }
+
+    public static void main(String[] args) {
+        //launch();
+        //char[] password = new char[]{'h','e','l','l','o'};
+        //System.out.println(Integer.toHexString(Arrays.hashCode(password)));
         String connectionString = System.getenv("mongoDBflashlearn");
         ServerApi serverApi = ServerApi.builder()
                 .version(ServerApiVersion.V1)
@@ -47,15 +60,11 @@ public class MainMenu extends Application {
                 .serverApi(serverApi)
                 .build();
         // Create a new client and connect to the server
-        try (MongoClient mongoClient = MongoClients.create(settings)) {
-            try {
-                MongoDatabase db = mongoClient.getDatabase("Users");
-                Document user = new Document().append("Test",Integer.toHexString(Arrays.hashCode(password)));
-                System.out.println("Pinged your deployment. You successfully connected to MongoDB!");
-                db.getCollection("Test").insertOne(user);
-            } catch (MongoException e) {
-                e.printStackTrace();
+        try (MongoClient m = MongoClients.create(settings)) {
+            mongoClient = m;
+            if(checkForDatabase("Eleanor")){
+                System.out.println("help");
             }
-        }*/
+        }
     }
 }

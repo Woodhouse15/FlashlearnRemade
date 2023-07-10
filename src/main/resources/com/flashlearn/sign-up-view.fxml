@@ -12,8 +12,9 @@
         <font>
             <Font size="50.0" />
         </font></Text>
-    <Button layoutX="266.0" layoutY="316.0" mnemonicParsing="false" text="Sign Up" />
+    <Button fx:id="signUpButton" layoutX="266.0" layoutY="316.0" mnemonicParsing="false" text="Sign Up" onAction="#signUp"/>
     <Button fx:id="backButton" layoutX="14.0" layoutY="14.0" mnemonicParsing="false" text="Back" onAction="#back"/>
-    <PasswordField layoutX="220.0" layoutY="245.0" promptText="Enter New Password" />
-    <TextField layoutX="221.0" layoutY="200.0" promptText="Enter New Username" />
+    <PasswordField fx:id="passwordField" layoutX="220.0" layoutY="245.0" promptText="Enter New Password" />
+    <TextField fx:id="usernameField" layoutX="220.0" layoutY="200.0" promptText="Enter New Username" />
+    <Text fx:id="signUpGuide" layoutX="220.0" layoutY="290.0"/>
 </AnchorPane>
