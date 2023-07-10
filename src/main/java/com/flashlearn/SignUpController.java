@@ -1,13 +1,5 @@
 package com.flashlearn;
 
-
-import com.mongodb.ConnectionString;
-import com.mongodb.MongoClientSettings;
-import com.mongodb.ServerApi;
-import com.mongodb.ServerApiVersion;
-import com.mongodb.client.MongoClient;
-import com.mongodb.client.MongoClients;
-import com.mongodb.client.MongoDatabase;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -17,7 +9,6 @@ import javafx.scene.control.TextField;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.regex.*;
 
 public class SignUpController {
@@ -40,12 +31,6 @@ public class SignUpController {
         stage.setTitle("Flashlearn");
         stage.setScene(scene);
         stage.show();
-    }
-
-
-
-    private void addUser(String username, String password){
-
     }
 
     @FXML
@@ -75,8 +60,8 @@ public class SignUpController {
             }
             Matcher matcher = pattern.matcher(password);
             if(matcher.matches()){
-                if(!MainMenu.checkForDatabase(username)){
-                    System.out.println("WE DO BE VIBING");
+                if(!UsersDatabase.checkUserExists(username)){
+                    UsersDatabase.addUser(username,password);
                 }else{
                     passwordField.clear();
                     usernameField.clear();
