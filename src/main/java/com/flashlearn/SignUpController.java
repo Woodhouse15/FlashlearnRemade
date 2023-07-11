@@ -34,7 +34,7 @@ public class SignUpController {
     }
 
     @FXML
-    protected void signUp(){
+    protected void signUp() throws IOException {
         signUpGuide.setText("");
         String password = passwordField.getText();
         String username = usernameField.getText();
@@ -62,6 +62,12 @@ public class SignUpController {
             if(matcher.matches()){
                 if(!UsersDatabase.checkUserExists(username)){
                     UsersDatabase.addUser(username,password);
+                    Stage stage = (Stage) signUpButton.getScene().getWindow();
+                    FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("home-page-view.fxml"));
+                    Scene scene = new Scene(fxmlLoader.load(), 600, 400);
+                    stage.setTitle("Flashlearn");
+                    stage.setScene(scene);
+                    stage.show();
                 }else{
                     passwordField.clear();
                     usernameField.clear();

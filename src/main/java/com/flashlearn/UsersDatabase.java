@@ -6,21 +6,13 @@ import org.bson.Document;
 import java.util.Arrays;
 import java.util.Objects;
 
-public class UsersDatabase {
-    private static MongoClient client;
-    private static UsersDatabase database = null;
+public final class UsersDatabase {
+    private static final MongoClient client = MongoClients.create(System.getenv("mongoDBflashlearn"));
 
     private UsersDatabase(){
-        String connectionString = System.getenv("mongoDBflashlearn");
-        client = MongoClients.create(connectionString);
+        throw new UnsupportedOperationException("This is a utility class and cannot be instantiated");
     }
 
-    public static MongoClient getConnection() {
-
-        if (database == null) database = new UsersDatabase();
-
-        return client;
-    }
     public static void closeDatabase() {
         client.close();
     }
