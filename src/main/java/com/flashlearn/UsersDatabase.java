@@ -4,6 +4,7 @@ import com.mongodb.client.*;
 import org.bson.Document;
 
 import java.util.Arrays;
+import java.util.Objects;
 
 public class UsersDatabase {
     private static MongoClient client;
@@ -39,6 +40,13 @@ public class UsersDatabase {
         var d1 = new Document("Username",username);
         d1.append("Password", Integer.toHexString(Arrays.hashCode(password.toCharArray())));
         collection.insertOne(d1);
+    }
+
+    public static boolean checkDetails(String username, String password){
+        MongoDatabase mongoDatabase = client.getDatabase("Users");
+        MongoCollection<Document> collection = mongoDatabase.getCollection("UsersInfo");
+        FindIterable<Document> iterable = collection.find(new Document("Username", username)).limit(1);
+        return iterable.first() != null && Objects.requireNonNull(iterable.first()).get("Password").equals(Integer.toHexString(Arrays.hashCode(password.toCharArray())));
     }
 }
 

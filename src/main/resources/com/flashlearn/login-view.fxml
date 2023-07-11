@@ -9,9 +9,9 @@
       <font>
          <Font size="50.0" />
       </font></Text>
-   <Button layoutX="266.0" layoutY="316.0" mnemonicParsing="false" text="Log In" />
+   <Button fx:id="loginButton" layoutX="266.0" layoutY="316.0" mnemonicParsing="false" text="Log In" onAction="#login" />
     <Button fx:id="backButton" layoutX="14.0" layoutY="14.0" mnemonicParsing="false" text="Back" onAction="#back"/>
-   <PasswordField layoutX="220.0" layoutY="245.0" promptText="Enter Password" />
-   <TextField layoutX="221.0" layoutY="200.0" promptText="Enter Username" />
+   <PasswordField fx:id="passwordField" layoutX="220.0" layoutY="245.0" promptText="Enter Password" />
+   <TextField fx:id="usernameField" layoutX="221.0" layoutY="200.0" promptText="Enter Username" />
 
 </AnchorPane>
