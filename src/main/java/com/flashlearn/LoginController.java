@@ -39,6 +39,7 @@ public class LoginController {
         String password = passwordField.getText();
         String username = usernameField.getText();
         if(UsersDatabase.checkDetails(username,password)){
+            UsersDatabase.setUser(username);
             Stage stage = (Stage) loginButton.getScene().getWindow();
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("home-page-view.fxml"));
             Scene scene = new Scene(fxmlLoader.load(), 600, 400);

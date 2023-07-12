@@ -15,8 +15,9 @@
       </top>
       <center>
          <ScrollPane fx:id="contentHolder" prefHeight="350.0" prefWidth="600.0" BorderPane.alignment="CENTER">
-
-         </ScrollPane>
+               <GridPane fx:id="buttonHolder" prefWidth="600">
+               </GridPane>
+            </ScrollPane>
       </center>
    </BorderPane>
 </AnchorPane>
