@@ -21,6 +21,7 @@ public class MainMenu extends Application {
     }
 
     public static void main(String[] args) {
+        UsersDatabase.start();
         launch();
         UsersDatabase.closeDatabase();
     }

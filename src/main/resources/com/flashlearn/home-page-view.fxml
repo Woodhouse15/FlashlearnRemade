@@ -15,8 +15,9 @@
       </top>
       <center>
          <ScrollPane fx:id="contentHolder" prefHeight="350.0" prefWidth="600.0" BorderPane.alignment="CENTER">
-               <GridPane fx:id="buttonHolder" prefWidth="600">
-               </GridPane>
+               <TilePane fx:id="buttonHolder" prefWidth="600">
+                  <Button fx:id="addSetButton" prefWidth="100.0" prefHeight="100.0" onAction="#addSet">+</Button>
+               </TilePane>
             </ScrollPane>
       </center>
    </BorderPane>
