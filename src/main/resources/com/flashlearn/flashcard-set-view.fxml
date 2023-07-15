@@ -1,14 +1,28 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
 
 <AnchorPane xmlns="http://javafx.com/javafx"
             xmlns:fx="http://javafx.com/fxml"
             fx:controller="com.flashlearn.FlashcardSetController"
             prefHeight="400.0" prefWidth="600.0">
-
+    <BorderPane prefHeight="400.0" prefWidth="600.0">
+        <center>
+            <ScrollPane fx:id="contentHolder" prefHeight="350.0" prefWidth="600.0" BorderPane.alignment="CENTER">
+            </ScrollPane>
+        </center>
+        <top>
+            <HBox prefHeight="100.0" prefWidth="200.0" spacing="100.0" BorderPane.alignment="CENTER">
+                <Button fx:id="backButton" mnemonicParsing="false" prefHeight="50.0" prefWidth="68.0" text="Log Out" onAction="#back"/>
+                <Text fx:id="flashcardTitle" textAlignment="CENTER">
+                    <font>
+                        <Font size="50.0" />
+                    </font>
+                </Text>
+            </HBox>
+        </top>
+    </BorderPane>
 </AnchorPane>

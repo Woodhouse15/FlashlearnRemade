@@ -21,7 +21,6 @@
                   <Font size="50.0" />
                </font>
             </Text>
-            <Button mnemonicParsing="false" prefHeight="50.0" prefWidth="82.0" text="Settings" />
          </HBox>
       </top>
    </BorderPane>

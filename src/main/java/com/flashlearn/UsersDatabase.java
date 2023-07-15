@@ -101,5 +101,12 @@ public final class UsersDatabase {
         document.append("Definition",definition);
         mongoCollection.insertOne(document);
     }
+
+    public boolean checkSetExists(String setName){
+        MongoDatabase mongoDatabase = client.getDatabase("Users");
+        MongoCollection<Document> collection = mongoDatabase.getCollection("UserSets");
+        FindIterable<Document> iterable = collection.find(new Document("User", user).append("SetName",setName)).limit(1);
+        return iterable.first() != null;
+    }
 }
 
