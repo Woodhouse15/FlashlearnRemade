@@ -87,7 +87,7 @@ public final class UsersDatabase {
 
     public static HashMap<String, String> getSetData(){
         HashMap<String,String> data = new HashMap<>();
-        MongoCollection<Document> mongoCollection = client.getDatabase("Sets").getCollection(user+"_"+currentSetName);
+        MongoCollection<Document> mongoCollection = client.getDatabase("Sets").getCollection(user + "_" + currentSetName);
         FindIterable<Document> iterable =  mongoCollection.find();
         for(Document i : iterable){
             data.put(i.getString("Term"), i.getString("Definition"));
