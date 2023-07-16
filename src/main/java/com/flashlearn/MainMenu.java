@@ -24,5 +24,6 @@ public class MainMenu extends Application {
         UsersDatabase.start();
         launch();
         UsersDatabase.closeDatabase();
+
     }
 }

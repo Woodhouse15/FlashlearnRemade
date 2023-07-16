@@ -75,7 +75,9 @@ public class HomePageController {
     public void validateNewSet(String setName) throws IOException {
         if(setName.length() < 1 || setName.contains("$")){
             promptText.setText("Set name can't be empty or have the $ sign");
-        }else{
+        } else if (UsersDatabase.checkSetExists(setName)) {
+            promptText.setText("Set already exists");
+        } else{
             UsersDatabase.newSet(setName);
             moveToFlashcardView(setName);
         }

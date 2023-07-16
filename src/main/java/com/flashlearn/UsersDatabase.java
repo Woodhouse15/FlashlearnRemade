@@ -1,7 +1,12 @@
 package com.flashlearn;
 
+import com.mongodb.BasicDBObject;
+import com.mongodb.MongoNamespace;
 import com.mongodb.client.*;
+import com.mongodb.client.model.Filters;
+import com.mongodb.client.model.Updates;
 import org.bson.Document;
+import org.bson.conversions.Bson;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -102,11 +107,28 @@ public final class UsersDatabase {
         mongoCollection.insertOne(document);
     }
 
-    public boolean checkSetExists(String setName){
+    public static boolean checkSetExists(String setName){
         MongoDatabase mongoDatabase = client.getDatabase("Users");
         MongoCollection<Document> collection = mongoDatabase.getCollection("UserSets");
         FindIterable<Document> iterable = collection.find(new Document("User", user).append("SetName",setName)).limit(1);
         return iterable.first() != null;
+    }
+
+    public static void changeSetName(String newSetName){
+        MongoDatabase mongoDatabase = client.getDatabase("Sets");
+        MongoNamespace newName = new MongoNamespace("Sets" ,user + "_" +newSetName);
+        mongoDatabase.getCollection(user + "_" +currentSetName).renameCollection(newName);
+        MongoDatabase database = client.getDatabase("Users");
+        MongoCollection<Document> collection = database.getCollection("UserSets");
+        Bson filter = Filters.and(Filters.eq("User",user),Filters.eq("SetName",currentSetName));
+        collection.updateOne(filter,Updates.set("SetName", newSetName));
+    }
+
+    public static void updateCard(String oldTerm, String newTerm, String oldDef, String newDef){
+        MongoDatabase mongoDatabase = client.getDatabase("Sets");
+        MongoCollection<Document> collection = mongoDatabase.getCollection(user + "_" +currentSetName);
+        Bson filter = Filters.and(Filters.eq("Term",oldTerm),Filters.eq("Definition",oldDef));
+        collection.updateMany(filter,Updates.combine(Updates.set("Term",newTerm),Updates.set("Definition",newDef)));
     }
 }
 

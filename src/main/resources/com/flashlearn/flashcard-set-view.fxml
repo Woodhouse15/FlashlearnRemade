@@ -4,11 +4,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-
-<AnchorPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="com.flashlearn.FlashcardSetController"
-            prefHeight="400.0" prefWidth="600.0">
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.flashlearn.FlashcardSetController">
     <BorderPane prefHeight="400.0" prefWidth="600.0">
         <center>
             <ScrollPane fx:id="contentHolder" prefHeight="350.0" prefWidth="600.0" BorderPane.alignment="CENTER">
@@ -16,7 +12,7 @@
         </center>
         <top>
             <HBox prefHeight="100.0" prefWidth="200.0" spacing="100.0" BorderPane.alignment="CENTER">
-                <Button fx:id="backButton" mnemonicParsing="false" prefHeight="50.0" prefWidth="68.0" text="Log Out" onAction="#back"/>
+                <Button fx:id="backButton" mnemonicParsing="false" onAction="#back" prefHeight="50.0" prefWidth="68.0" text="Log Out" />
                 <Text fx:id="flashcardTitle" textAlignment="CENTER">
                     <font>
                         <Font size="50.0" />
@@ -24,5 +20,12 @@
                 </Text>
             </HBox>
         </top>
+      <bottom>
+          <HBox prefHeight="50.0" prefWidth="600.0" BorderPane.alignment="CENTER">
+              <Button fx:id="addCardButton" mnemonicParsing="false" prefHeight="50.0"  text="Add Card"/>
+              <Button fx:id="editSetNameButton" mnemonicParsing="false" prefHeight="50.0" text="Edit Set Name" onAction="#editSetName"/>
+              <Button fx:id="deleteSetButton" mnemonicParsing="false" prefHeight="50.0" text="Delete Set"/>
+          </HBox>
+      </bottom>
     </BorderPane>
 </AnchorPane>
