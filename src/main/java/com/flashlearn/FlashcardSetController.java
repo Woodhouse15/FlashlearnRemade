@@ -28,7 +28,7 @@ public class FlashcardSetController {
     @FXML
     public Button deleteSetButton;
     public Button editSetNameButton;
-    public Text promptText;
+    public Text promptText = new Text();
 
     @FXML
     public void initialize(){
@@ -42,7 +42,7 @@ public class FlashcardSetController {
     public void back() throws IOException {
         UsersDatabase.setCurrentSetName(null);
         Stage stage = (Stage) backButton.getScene().getWindow();
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("flashcard-set-view.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("home-page-view.fxml"));
         Scene scene = new Scene(fxmlLoader.load(), 600, 400);
         stage.setTitle("Flashlearn");
         stage.setScene(scene);
@@ -51,12 +51,10 @@ public class FlashcardSetController {
 
     public void editSetName() {
         final Stage dialog = new Stage();
-        dialog.initModality(Modality.APPLICATION_MODAL);
-        dialog.initOwner(editSetNameButton.getScene().getWindow());
-        VBox dialogVbox = new VBox(20);
+        VBox dialogVbox = new VBox();
         Text prompt = new Text("Enter Set Name Below");
         TextField setName = new TextField();
-        Button enterName = new Button("Add Set");
+        Button enterName = new Button("Change Name");
         enterName.setOnAction(event -> {
             String newSet = setName.getText();
             if(newSet.length() < 1 || newSet.contains("$")){
@@ -66,6 +64,7 @@ public class FlashcardSetController {
             } else{
                 UsersDatabase.changeSetName(newSet);
                 initialize();
+                dialog.close();
             }
         });
         dialogVbox.getChildren().addAll(prompt,setName,promptText,enterName);

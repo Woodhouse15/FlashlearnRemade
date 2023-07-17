@@ -27,7 +27,8 @@ public class HomePageController {
     @FXML
     public Button logOutButton;
 
-    public Text promptText;
+    public Text promptText = new Text();
+    final Stage dialog = new Stage();
 
     @FXML
     public void initialize(){
@@ -37,6 +38,7 @@ public class HomePageController {
         for(String i : setNames){
             System.out.println(i);
             sets[j] = new Button(i);
+            sets[j].wrapTextProperty().setValue(true);
             sets[j].setPrefSize(100.0,100.0);
             int finalJ = j;
             sets[j].setOnAction(event -> {
@@ -52,7 +54,6 @@ public class HomePageController {
     }
 
     public void addSet() {
-        final Stage dialog = new Stage();
         dialog.initModality(Modality.APPLICATION_MODAL);
         dialog.initOwner(addSetButton.getScene().getWindow());
         VBox dialogVbox = new VBox(20);
@@ -79,6 +80,7 @@ public class HomePageController {
             promptText.setText("Set already exists");
         } else{
             UsersDatabase.newSet(setName);
+            dialog.close();
             moveToFlashcardView(setName);
         }
     }

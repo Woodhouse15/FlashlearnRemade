@@ -49,8 +49,7 @@ public final class UsersDatabase {
     public static boolean checkUserExists(String username) {
         MongoDatabase mongoDatabase = client.getDatabase("Users");
         MongoCollection<Document> collection = mongoDatabase.getCollection("UsersInfo");
-        FindIterable<Document> iterable = collection
-                .find(new Document("Username", username)).limit(1);
+        FindIterable<Document> iterable = collection.find(Filters.eq("Username",username)).limit(1);
         return iterable.first() != null;
     }
 
@@ -66,14 +65,15 @@ public final class UsersDatabase {
     public static boolean checkDetails(String username, String password){
         MongoDatabase mongoDatabase = client.getDatabase("Users");
         MongoCollection<Document> collection = mongoDatabase.getCollection("UsersInfo");
-        FindIterable<Document> iterable = collection.find(new Document("Username", username)).limit(1);
-        return iterable.first() != null && Objects.requireNonNull(iterable.first()).get("Password").equals(Integer.toHexString(Arrays.hashCode(password.toCharArray())));
+        Bson filter = Filters.and(Filters.eq("Username",username),Filters.eq("Password",Integer.toHexString(Arrays.hashCode(password.toCharArray()))));
+        FindIterable<Document> iterable = collection.find(filter).limit(1);
+        return iterable.first() != null;
     }
 
     public static ArrayList<String> getUserSets(){
         MongoCollection<Document> flashcardSets = client.getDatabase("Users").getCollection("UserSets");
         ArrayList<String> setNames = new ArrayList<>();
-        FindIterable<Document> iterable =  flashcardSets.find(new Document("User",user));
+        FindIterable<Document> iterable =  flashcardSets.find(Filters.eq("User",user));
         for(Document docs : iterable){
             setNames.add(docs.getString("SetName"));
         }
