@@ -130,5 +130,22 @@ public final class UsersDatabase {
         Bson filter = Filters.and(Filters.eq("Term",oldTerm),Filters.eq("Definition",oldDef));
         collection.updateMany(filter,Updates.combine(Updates.set("Term",newTerm),Updates.set("Definition",newDef)));
     }
+
+    public static void deleteSet(){
+        MongoDatabase mongoDatabase = client.getDatabase("Sets");
+        mongoDatabase.getCollection(user + "_" + currentSetName).drop();
+        MongoDatabase userInfo = client.getDatabase("Users");
+        MongoCollection<Document> collection = userInfo.getCollection("UserSets");
+        Bson filter = Filters.and(Filters.eq("User",user),Filters.eq("SetName",currentSetName));
+        collection.deleteOne(filter);
+        currentSetName = null;
+    }
+
+    public static void deleteCard(String term, String def){
+        MongoDatabase mongoDatabase = client.getDatabase("Sets");
+        MongoCollection<Document> collection = mongoDatabase.getCollection(user + "_" + currentSetName);
+        Bson filter = Filters.and(Filters.eq("Term",term),Filters.eq("Definition",def));
+        collection.deleteOne(filter);
+    }
 }
 

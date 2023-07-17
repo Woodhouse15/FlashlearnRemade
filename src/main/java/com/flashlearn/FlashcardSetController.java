@@ -63,13 +63,36 @@ public class FlashcardSetController {
                 promptText.setText("Set already exists");
             } else{
                 UsersDatabase.changeSetName(newSet);
-                initialize();
                 dialog.close();
+                try {
+                    reset();
+                } catch (IOException e) {
+                    throw new RuntimeException(e);
+                }
             }
         });
         dialogVbox.getChildren().addAll(prompt,setName,promptText,enterName);
         Scene dialogScene = new Scene(dialogVbox,300,200);
         dialog.setScene(dialogScene);
         dialog.show();
+    }
+
+    public void reset() throws IOException {
+        Stage stage = (Stage) contentHolder.getScene().getWindow();
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("flashcard-set-view.fxml"));
+        Scene scene = new Scene(fxmlLoader.load(), 600, 400);
+        stage.setTitle("Flashlearn");
+        stage.setScene(scene);
+        stage.show();
+    }
+
+    public void deleteSet() throws IOException {
+        UsersDatabase.deleteSet();
+        Stage stage = (Stage) contentHolder.getScene().getWindow();
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("home-page-view.fxml"));
+        Scene scene = new Scene(fxmlLoader.load(), 600, 400);
+        stage.setTitle("Flashlearn");
+        stage.setScene(scene);
+        stage.show();
     }
 }
