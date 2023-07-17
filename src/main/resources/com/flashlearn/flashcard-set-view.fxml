@@ -11,7 +11,7 @@
             </ScrollPane>
         </center>
         <top>
-            <HBox prefHeight="100.0" prefWidth="200.0" spacing="100.0" BorderPane.alignment="CENTER">
+            <HBox prefHeight="100.0" prefWidth="200.0" spacing="50.0" BorderPane.alignment="CENTER">
                 <Button fx:id="backButton" mnemonicParsing="false" onAction="#back" prefHeight="50.0" prefWidth="68.0" text="Back" />
                 <Text fx:id="flashcardTitle" textAlignment="CENTER">
                     <font>
@@ -22,7 +22,7 @@
         </top>
       <bottom>
           <HBox prefHeight="50.0" prefWidth="600.0" BorderPane.alignment="CENTER">
-              <Button fx:id="addCardButton" mnemonicParsing="false" prefHeight="50.0"  text="Add Card"/>
+              <Button fx:id="editCardsButton" mnemonicParsing="false" prefHeight="50.0"  text="Edit Cards"/>
               <Button fx:id="editSetNameButton" mnemonicParsing="false" prefHeight="50.0" text="Edit Set Name" onAction="#editSetName"/>
               <Button fx:id="deleteSetButton" mnemonicParsing="false" prefHeight="50.0" text="Delete Set" onAction="#deleteSet"/>
           </HBox>

@@ -100,6 +100,13 @@ public final class UsersDatabase {
         return data;
     }
 
+    public static boolean doesCardExist(String term, String definition){
+        MongoCollection<Document> mongoCollection = client.getDatabase("Sets").getCollection(user + "_" + currentSetName);
+        Bson filter = Filters.and(Filters.eq("Term",term),Filters.eq("Definition",definition));
+        FindIterable<Document> iterable =  mongoCollection.find(filter);
+        return iterable.first() != null;
+    }
+
     public static void addCard(String term, String definition){
         MongoCollection<Document> mongoCollection = client.getDatabase("Sets").getCollection(user + "_" + currentSetName);
         Document document = new Document("Term",term);

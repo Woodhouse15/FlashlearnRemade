@@ -1,6 +1,5 @@
 package com.flashlearn;
 
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -9,7 +8,6 @@ import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
-import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -24,9 +22,10 @@ public class FlashcardSetController {
     @FXML
     public Text flashcardTitle;
     @FXML
-    public Button addCardButton;
+    public Button editCardsButton;
     @FXML
     public Button deleteSetButton;
+    @FXML
     public Button editSetNameButton;
     public Text promptText = new Text();
 
