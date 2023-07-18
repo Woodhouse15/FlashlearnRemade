@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
@@ -7,24 +8,34 @@
 <AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.flashlearn.FlashcardSetController">
     <BorderPane prefHeight="400.0" prefWidth="600.0">
         <center>
-            <ScrollPane fx:id="contentHolder" prefHeight="350.0" prefWidth="600.0" BorderPane.alignment="CENTER">
+            <ScrollPane prefHeight="250.0" prefWidth="580.0" BorderPane.alignment="CENTER">
+                <VBox fx:id="cardHolder" VBox.vgrow="always" prefWidth="575.0">
+                </VBox>
+            <BorderPane.margin>
+               <Insets left="10.0" right="10.0" />
+            </BorderPane.margin>
             </ScrollPane>
         </center>
         <top>
-            <HBox prefHeight="100.0" prefWidth="200.0" spacing="50.0" BorderPane.alignment="CENTER">
-                <Button fx:id="backButton" mnemonicParsing="false" onAction="#back" prefHeight="50.0" prefWidth="68.0" text="Back" />
-                <Text fx:id="flashcardTitle" textAlignment="CENTER">
+            <HBox alignment="CENTER" prefHeight="100.0" prefWidth="600.0" spacing="50.0" BorderPane.alignment="CENTER">
+                <Text fx:id="flashcardTitle" text="Testing" textAlignment="CENTER">
                     <font>
-                        <Font size="50.0" />
+                        <Font size="36.0" />
                     </font>
                 </Text>
             </HBox>
         </top>
       <bottom>
-          <HBox prefHeight="50.0" prefWidth="600.0" BorderPane.alignment="CENTER">
-              <Button fx:id="editCardsButton" mnemonicParsing="false" prefHeight="50.0"  text="Edit Cards"/>
-              <Button fx:id="editSetNameButton" mnemonicParsing="false" prefHeight="50.0" text="Edit Set Name" onAction="#editSetName"/>
-              <Button fx:id="deleteSetButton" mnemonicParsing="false" prefHeight="50.0" text="Delete Set" onAction="#deleteSet"/>
+          <HBox alignment="CENTER" prefHeight="80.0" prefWidth="600.0" spacing="15.0" BorderPane.alignment="CENTER">
+                <Button fx:id="backButton" mnemonicParsing="false" onAction="#back" prefHeight="50.0" prefWidth="68.0" text="Back" />
+              <Button fx:id="learnSetButton" mnemonicParsing="false" prefHeight="50.0" text="Learn Set" />
+              <Button fx:id="editCardsButton" mnemonicParsing="false" prefHeight="50.0" text="Edit Cards" />
+              <Button fx:id="editSetNameButton" mnemonicParsing="false" onAction="#editSetName" prefHeight="50.0" text="Edit Set Name" />
+              <Button fx:id="deleteSetButton" mnemonicParsing="false" onAction="#deleteSet" prefHeight="50.0" text="Delete Set" />
+            <BorderPane.margin>
+               <Insets />
+            </BorderPane.margin>
+
           </HBox>
       </bottom>
     </BorderPane>

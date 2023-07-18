@@ -32,9 +32,12 @@ public class CustomCard extends VBox {
 
     public void setTermText(String term){
         termField.setText(term);
+        termField.autosize();
     }
 
     public void setDefinitionText(String definition){
         definitionField.setText(definition);
+        autosize();
     }
+
 }

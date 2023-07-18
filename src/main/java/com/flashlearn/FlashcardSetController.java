@@ -14,9 +14,6 @@ import java.io.IOException;
 import java.util.HashMap;
 
 public class FlashcardSetController {
-
-    @FXML
-    public ScrollPane contentHolder;
     @FXML
     public Button backButton;
     @FXML
@@ -28,14 +25,25 @@ public class FlashcardSetController {
     @FXML
     public Button editSetNameButton;
     public Text promptText = new Text();
+    @FXML
+    public VBox cardHolder;
+    @FXML
+    public Button learnSetButton;
 
     @FXML
     public void initialize(){
         flashcardTitle.setText(UsersDatabase.getCurrentSetName());
         HashMap<String,String> cards = UsersDatabase.getSetData();
+        CustomCard[] data = new CustomCard[cards.size()];
+        int j = 0;
         for(String i : cards.keySet()){
-            System.out.println(i);
+            data[j] = new CustomCard();
+            data[j].setTermText(i);
+            data[j].setDefinitionText(cards.get(i));
+            data[j].setPrefSize(600,50);
+            j++;
         }
+        cardHolder.getChildren().addAll(data);
     }
 
     public void back() throws IOException {
@@ -77,7 +85,7 @@ public class FlashcardSetController {
     }
 
     public void reset() throws IOException {
-        Stage stage = (Stage) contentHolder.getScene().getWindow();
+        Stage stage = (Stage) cardHolder.getScene().getWindow();
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("flashcard-set-view.fxml"));
         Scene scene = new Scene(fxmlLoader.load(), 600, 400);
         stage.setTitle("Flashlearn");
@@ -87,7 +95,7 @@ public class FlashcardSetController {
 
     public void deleteSet() throws IOException {
         UsersDatabase.deleteSet();
-        Stage stage = (Stage) contentHolder.getScene().getWindow();
+        Stage stage = (Stage) cardHolder.getScene().getWindow();
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("home-page-view.fxml"));
         Scene scene = new Scene(fxmlLoader.load(), 600, 400);
         stage.setTitle("Flashlearn");

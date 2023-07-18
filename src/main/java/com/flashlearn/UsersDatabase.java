@@ -129,6 +129,7 @@ public final class UsersDatabase {
         MongoCollection<Document> collection = database.getCollection("UserSets");
         Bson filter = Filters.and(Filters.eq("User",user),Filters.eq("SetName",currentSetName));
         collection.updateOne(filter,Updates.set("SetName", newSetName));
+        currentSetName = newSetName;
     }
 
     public static void updateCard(String oldTerm, String newTerm, String oldDef, String newDef){

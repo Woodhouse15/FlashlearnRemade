@@ -18,7 +18,7 @@
             <Button fx:id="logOutButton" mnemonicParsing="false" prefHeight="50.0" prefWidth="68.0" text="Log Out" onAction="#logOut"/>
             <Text text="Home Page" textAlignment="CENTER">
                <font>
-                  <Font size="50.0" />
+                  <Font size="36.0" />
                </font>
             </Text>
          </HBox>

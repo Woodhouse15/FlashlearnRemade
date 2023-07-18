@@ -6,13 +6,11 @@
 
 <?import javafx.scene.text.Text?>
 <fx:root type="javafx.scene.layout.VBox" xmlns="http://javafx.com/javafx"
-         xmlns:fx="http://javafx.com/fxml"
-         fx:controller="com.flashlearn.CustomCard"
-         prefHeight="400.0" prefWidth="600.0">
-    <TilePane prefRows="2" prefColumns="2">
-        <Text>Term</Text>
-        <Text>Definition</Text>
-        <TextArea fx:id="termField" />
-        <TextArea fx:id="definitionField" />
-    </TilePane>
+         xmlns:fx="http://javafx.com/fxml">
+    <GridPane prefWidth="560.0">
+        <Text GridPane.rowIndex="0" GridPane.columnIndex="0">Term</Text>
+        <Text GridPane.rowIndex="0" GridPane.columnIndex="1">Definition</Text>
+        <TextArea GridPane.rowIndex="1" GridPane.columnIndex="0" prefHeight="50" fx:id="termField" editable="false"/>
+        <TextArea GridPane.rowIndex="1" GridPane.columnIndex="1" prefHeight="50" fx:id="definitionField" editable="false" />
+    </GridPane>
 </fx:root>
