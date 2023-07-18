@@ -4,12 +4,12 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.flashlearn.MainMenuController">
-  <Text layoutX="184.0" layoutY="133.0" text="Flashlearn" wrappingWidth="222.00390625">
+<VBox alignment="CENTER" spacing="25.0" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.flashlearn.MainMenuController">
+  <Text text="Flashlearn" wrappingWidth="222.00390625" >
     <font>
       <Font size="50.0" />
     </font></Text>
-  <Button fx:id="logInButton" layoutX="273.0" layoutY="240.0" mnemonicParsing="false" text="Login" onAction="#logInClick" />
-  <Button fx:id="signUpButton" layoutX="266.0" layoutY="187.0" mnemonicParsing="false" text="Sign Up" onAction="#signUpClick" />
-  <Button fx:id="exitButton" layoutX="278.0" layoutY="296.0" mnemonicParsing="false" text="Exit" onAction="#exit" />
-</AnchorPane>
+  <Button fx:id="logInButton" mnemonicParsing="false" text="Login" onAction="#logInClick" />
+  <Button fx:id="signUpButton" mnemonicParsing="false" text="Sign Up" onAction="#signUpClick" />
+  <Button fx:id="exitButton" mnemonicParsing="false" text="Exit" onAction="#exit" />
+</VBox>

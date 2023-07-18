@@ -37,7 +37,7 @@ public class CustomCard extends VBox {
 
     public void setDefinitionText(String definition){
         definitionField.setText(definition);
-        autosize();
+        definitionField.autosize();
     }
 
 }
