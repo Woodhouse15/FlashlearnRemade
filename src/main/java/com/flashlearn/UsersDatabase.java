@@ -98,13 +98,6 @@ public final class UsersDatabase {
         return data;
     }
 
-    public static boolean doesCardExist(String term, String definition){
-        MongoCollection<Document> mongoCollection = client.getDatabase("Sets").getCollection(user + "_" + currentSetName);
-        Bson filter = Filters.and(Filters.eq("Term",term),Filters.eq("Definition",definition));
-        FindIterable<Document> iterable =  mongoCollection.find(filter);
-        return iterable.first() != null;
-    }
-
     public static void addCard(String term, String definition){
         MongoCollection<Document> mongoCollection = client.getDatabase("Sets").getCollection(user + "_" + currentSetName);
         Document document = new Document("Term",term);
@@ -130,13 +123,6 @@ public final class UsersDatabase {
         currentSetName = newSetName;
     }
 
-    public static void updateCard(String oldTerm, String newTerm, String oldDef, String newDef){
-        MongoDatabase mongoDatabase = client.getDatabase("Sets");
-        MongoCollection<Document> collection = mongoDatabase.getCollection(user + "_" +currentSetName);
-        Bson filter = Filters.and(Filters.eq("Term",oldTerm),Filters.eq("Definition",oldDef));
-        collection.updateMany(filter,Updates.combine(Updates.set("Term",newTerm),Updates.set("Definition",newDef)));
-    }
-
     public static void deleteSet(){
         MongoDatabase mongoDatabase = client.getDatabase("Sets");
         mongoDatabase.getCollection(user + "_" + currentSetName).drop();
@@ -147,11 +133,13 @@ public final class UsersDatabase {
         currentSetName = null;
     }
 
-    public static void deleteCard(String term, String def){
+    public static void updateSet(HashMap<String,String> cards){
         MongoDatabase mongoDatabase = client.getDatabase("Sets");
         MongoCollection<Document> collection = mongoDatabase.getCollection(user + "_" + currentSetName);
-        Bson filter = Filters.and(Filters.eq("Term",term),Filters.eq("Definition",def));
-        collection.deleteOne(filter);
+        collection.deleteMany(new Document());
+        for(String i : cards.keySet()){
+            addCard(i,cards.get(i));
+        }
     }
 
 }

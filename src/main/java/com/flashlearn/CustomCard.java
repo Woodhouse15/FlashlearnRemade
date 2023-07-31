@@ -1,12 +1,13 @@
 package com.flashlearn;
 
 import javafx.fxml.FXMLLoader;
+import javafx.scene.control.Button;
 import javafx.scene.control.TextArea;
-import javafx.scene.layout.VBox;
+import javafx.scene.layout.GridPane;
 
 import java.io.IOException;
 
-public class CustomCard extends VBox {
+public class CustomCard extends GridPane {
     public TextArea termField;
     public TextArea definitionField;
 

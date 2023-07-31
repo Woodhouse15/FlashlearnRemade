@@ -3,12 +3,10 @@
 <?import javafx.scene.control.TextArea?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.Text?>
-<fx:root type="javafx.scene.layout.VBox" xmlns="http://javafx.com/javafx"
-         xmlns:fx="http://javafx.com/fxml">
-    <GridPane prefWidth="560.0">
+<fx:root type="javafx.scene.layout.GridPane" xmlns="http://javafx.com/javafx"
+         xmlns:fx="http://javafx.com/fxml" prefWidth="560.0">
         <Text GridPane.rowIndex="0" GridPane.columnIndex="0">Term</Text>
         <Text GridPane.rowIndex="0" GridPane.columnIndex="1">Definition</Text>
         <TextArea GridPane.rowIndex="1" GridPane.columnIndex="0" prefHeight="50" fx:id="termField" editable="false"/>
         <TextArea GridPane.rowIndex="1" GridPane.columnIndex="1" prefHeight="50" fx:id="definitionField" editable="false" />
-    </GridPane>
 </fx:root>
