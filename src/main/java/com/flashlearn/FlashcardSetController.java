@@ -4,7 +4,6 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
@@ -27,7 +26,7 @@ public class FlashcardSetController {
     public Button deleteSetButton;
     @FXML
     public Button editSetNameButton;
-    public Text promptText = new Text();
+    public final Text promptText = new Text();
     @FXML
     public VBox cardHolder;
     @FXML
@@ -35,7 +34,7 @@ public class FlashcardSetController {
     public HBox buttonHolder;
 
     ArrayList<CustomCard> data;
-    Button save = new Button("Save Changes");
+    final Button save = new Button("Save Changes");
 
     @FXML
     public void initialize(){
@@ -158,9 +157,7 @@ public class FlashcardSetController {
                 VBox dialogVbox = new VBox(20);
                 Text promptText = new Text("There cannot be duplicate terms");
                 Button ok = new Button("OK");
-                ok.setOnAction(event -> {
-                    dialog.close();
-                });
+                ok.setOnAction(event -> dialog.close());
                 dialogVbox.getChildren().addAll(promptText,ok);
             }
             if(duplicates){

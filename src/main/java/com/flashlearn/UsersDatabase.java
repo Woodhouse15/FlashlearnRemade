@@ -12,7 +12,7 @@ import java.util.Arrays;
 import java.util.HashMap;
 
 public final class UsersDatabase {
-    private static final MongoClient client = MongoClients.create(System.getenv("mongoDBflashlearn"));
+    private static MongoClient client;
     private static String user;
 
     private static String currentSetName;
@@ -33,11 +33,8 @@ public final class UsersDatabase {
         UsersDatabase.currentSetName = currentSetName;
     }
 
-    public String getUser(){
-        return user;
-    }
-
     public static void start(){
+        client = MongoClients.create(System.getenv("mongoDBflashlearn"));
     }
 
     public static void setUser(String username){

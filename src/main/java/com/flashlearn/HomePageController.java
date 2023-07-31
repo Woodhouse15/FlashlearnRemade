@@ -27,7 +27,7 @@ public class HomePageController {
     @FXML
     public Button logOutButton;
 
-    public Text promptText = new Text();
+    public final Text promptText = new Text();
     final Stage dialog = new Stage();
 
     @FXML
