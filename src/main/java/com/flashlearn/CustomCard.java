@@ -40,4 +40,9 @@ public class CustomCard extends VBox {
         definitionField.autosize();
     }
 
+    public void enableText(boolean edit){
+        termField.setEditable(edit);
+        definitionField.setEditable(edit);
+    }
+
 }

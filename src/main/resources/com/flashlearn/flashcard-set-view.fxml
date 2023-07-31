@@ -7,7 +7,7 @@
 
 <BorderPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.flashlearn.FlashcardSetController">
         <center>
-            <ScrollPane prefHeight="250.0" prefWidth="580.0" BorderPane.alignment="CENTER">
+            <ScrollPane BorderPane.alignment="CENTER">
                 <VBox fx:id="cardHolder" VBox.vgrow="always" prefWidth="575.0">
                 </VBox>
             <BorderPane.margin>

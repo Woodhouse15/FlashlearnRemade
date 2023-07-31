@@ -1,6 +1,5 @@
 package com.flashlearn;
 
-import com.mongodb.BasicDBObject;
 import com.mongodb.MongoNamespace;
 import com.mongodb.client.*;
 import com.mongodb.client.model.Filters;
@@ -11,7 +10,6 @@ import org.bson.conversions.Bson;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
-import java.util.Objects;
 
 public final class UsersDatabase {
     private static final MongoClient client = MongoClients.create(System.getenv("mongoDBflashlearn"));
@@ -155,5 +153,6 @@ public final class UsersDatabase {
         Bson filter = Filters.and(Filters.eq("Term",term),Filters.eq("Definition",def));
         collection.deleteOne(filter);
     }
+
 }
 

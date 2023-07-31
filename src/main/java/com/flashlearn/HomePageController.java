@@ -36,7 +36,6 @@ public class HomePageController {
         Button[] sets = new Button[setNames.size()];
         int j = 0;
         for(String i : setNames){
-            System.out.println(i);
             sets[j] = new Button(i);
             sets[j].wrapTextProperty().setValue(true);
             sets[j].setPrefSize(100.0,100.0);

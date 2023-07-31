@@ -1,14 +1,30 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 
-<BorderPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="com.flashlearn.LearnModeController"
-            prefHeight="400.0" prefWidth="600.0">
-
+<BorderPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.flashlearn.LearnModeController">
+   <bottom>
+      <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="25.0" BorderPane.alignment="CENTER">
+         <Button id="easy" mnemonicParsing="false" prefHeight="50.0" prefWidth="100.0" text="Easy" onAction="#answer" />
+         <Button id="medium" mnemonicParsing="false" prefHeight="50.0" prefWidth="100.0" text="Medium" onAction="#answer" />
+         <Button id="hard" mnemonicParsing="false" prefHeight="50.0" prefWidth="100.0" text="Hard" onAction="#answer" />
+         <Button id="again" mnemonicParsing="false" prefHeight="50.0" prefWidth="100.0" text="Again" onAction="#answer" />
+      </HBox>
+   </bottom>
+   <center>
+       <SplitPane orientation="VERTICAL" prefHeight="200.0" prefWidth="160.0" BorderPane.alignment="CENTER">
+           <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Text">
+               <font>
+                   <Font size="36.0" />
+               </font>
+           </Text>
+           <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Text">
+               <font>
+                   <Font size="26.0" />
+               </font>
+           </Text>
+       </SplitPane>
+   </center>
 </BorderPane>
