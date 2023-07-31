@@ -8,6 +8,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
+import javafx.scene.text.TextAlignment;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
@@ -119,7 +120,10 @@ public class FlashcardSetController {
             });
             i.add(delete,1,2);
         }
-
+        Button addCard = new Button("+");
+        addCard.setTextAlignment(TextAlignment.CENTER);
+        addCard.setOnAction(event -> addNewCard());
+        cardHolder.getChildren().add(0,addCard);
         Button discard = new Button("Back");
         buttonHolder.getChildren().removeAll();
         buttonHolder.getChildren().addAll(save,discard);
@@ -138,6 +142,12 @@ public class FlashcardSetController {
                 throw new RuntimeException(e);
             }
         });
+    }
+
+    public void addNewCard(){
+        CustomCard card = new CustomCard();
+        data.add(card);
+        cardHolder.getChildren().add(card);
     }
 
     public void saveSet(){
