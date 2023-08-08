@@ -128,7 +128,6 @@ public class FlashcardSetController {
         save.setOnAction(event -> {
             try {
                 saveSet();
-                reset();
             } catch (IOException e) {
                 throw new RuntimeException(e);
             }
@@ -145,6 +144,7 @@ public class FlashcardSetController {
     public void addNewCard(){
         CustomCard card = new CustomCard();
         card.enableText(true);
+        card.setPrefSize(600,50);
         data.add(card);
         Button delete = new Button("Delete");
         delete.setOnAction(event -> {
@@ -155,7 +155,7 @@ public class FlashcardSetController {
         cardHolder.getChildren().add(1,card);
     }
 
-    public void saveSet(){
+    public void saveSet() throws IOException {
         HashMap<String,String> cards = new HashMap<>();
         boolean duplicates = false;
         for(CustomCard i : data){
@@ -164,23 +164,26 @@ public class FlashcardSetController {
             if(cards.get(term) == null){
                 cards.put(term,definition);
             }else{
+                System.out.println("Here");
                 duplicates = true;
-                cards.clear();
-                final Stage dialog = new Stage();
-                dialog.initModality(Modality.APPLICATION_MODAL);
-                dialog.initOwner(save.getScene().getWindow());
-                VBox dialogVbox = new VBox(20);
-                Text promptText = new Text("There cannot be duplicate terms");
-                Button ok = new Button("OK");
-                ok.setOnAction(event -> dialog.close());
-                dialogVbox.getChildren().addAll(promptText,ok);
-            }
-            if(duplicates){
-                break;
             }
         }
         if(!duplicates){
             UsersDatabase.updateSet(cards);
+            reset();
+        }else{
+            System.out.println("Not working");
+            final Stage dialog = new Stage();
+            dialog.initModality(Modality.APPLICATION_MODAL);
+            dialog.initOwner(save.getScene().getWindow());
+            VBox dialogVbox = new VBox(20);
+            Text promptText = new Text("There cannot be duplicate terms");
+            Button ok = new Button("OK");
+            ok.setOnAction(event -> dialog.close());
+            dialogVbox.getChildren().addAll(promptText,ok);
+            Scene dialogScene = new Scene(dialogVbox,300,200);
+            dialog.setScene(dialogScene);
+            dialog.show();
         }
     }
 }
