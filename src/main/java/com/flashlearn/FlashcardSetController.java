@@ -34,21 +34,19 @@ public class FlashcardSetController {
     public Button learnSetButton;
     public HBox buttonHolder;
 
-    ArrayList<CustomCard> data;
+    ArrayList<CustomCard> data = new ArrayList<>();
     final Button save = new Button("Save Changes");
 
     @FXML
     public void initialize(){
         flashcardTitle.setText(UsersDatabase.getCurrentSetName());
         HashMap<String,String> cards = UsersDatabase.getSetData();
-        data = new ArrayList<>(cards.size());
-        int j = 0;
         for(String i : cards.keySet()){
-            data.set(j,new CustomCard());
-            data.get(j).setTermText(i);
-            data.get(j).setDefinitionText(cards.get(i));
-            data.get(j).setPrefSize(600,50);
-            j++;
+            CustomCard card = new CustomCard();
+            card.setTermText(i);
+            card.setDefinitionText(cards.get(i));
+            card.setPrefSize(600,50);
+            data.add(card);
         }
         cardHolder.getChildren().addAll(data);
     }
@@ -125,7 +123,7 @@ public class FlashcardSetController {
         addCard.setOnAction(event -> addNewCard());
         cardHolder.getChildren().add(0,addCard);
         Button discard = new Button("Back");
-        buttonHolder.getChildren().removeAll();
+        buttonHolder.getChildren().clear();
         buttonHolder.getChildren().addAll(save,discard);
         save.setOnAction(event -> {
             try {
@@ -146,8 +144,15 @@ public class FlashcardSetController {
 
     public void addNewCard(){
         CustomCard card = new CustomCard();
+        card.enableText(true);
         data.add(card);
-        cardHolder.getChildren().add(card);
+        Button delete = new Button("Delete");
+        delete.setOnAction(event -> {
+            data.remove(card);
+            cardHolder.getChildren().remove(card);
+        });
+        card.add(delete,1,2);
+        cardHolder.getChildren().add(1,card);
     }
 
     public void saveSet(){
