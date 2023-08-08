@@ -2,6 +2,7 @@ package com.flashlearn;
 
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
@@ -177,11 +178,12 @@ public class FlashcardSetController {
             dialog.initModality(Modality.APPLICATION_MODAL);
             dialog.initOwner(save.getScene().getWindow());
             VBox dialogVbox = new VBox(20);
+            dialogVbox.setAlignment(Pos.CENTER);
             Text promptText = new Text("There cannot be duplicate terms");
             Button ok = new Button("OK");
             ok.setOnAction(event -> dialog.close());
             dialogVbox.getChildren().addAll(promptText,ok);
-            Scene dialogScene = new Scene(dialogVbox,300,200);
+            Scene dialogScene = new Scene(dialogVbox,200,100);
             dialog.setScene(dialogScene);
             dialog.show();
         }
