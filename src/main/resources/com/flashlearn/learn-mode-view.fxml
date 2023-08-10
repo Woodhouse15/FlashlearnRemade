@@ -6,21 +6,18 @@
 
 <BorderPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.flashlearn.LearnModeController">
    <bottom>
-      <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="25.0" BorderPane.alignment="CENTER">
-         <Button id="easy" mnemonicParsing="false" prefHeight="50.0" prefWidth="100.0" text="Easy" onAction="#answer" />
-         <Button id="medium" mnemonicParsing="false" prefHeight="50.0" prefWidth="100.0" text="Medium" onAction="#answer" />
-         <Button id="hard" mnemonicParsing="false" prefHeight="50.0" prefWidth="100.0" text="Hard" onAction="#answer" />
-         <Button id="again" mnemonicParsing="false" prefHeight="50.0" prefWidth="100.0" text="Again" onAction="#answer" />
+      <HBox fx:id="buttonHolder" alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="25.0" BorderPane.alignment="CENTER">
+         <Button mnemonicParsing="false" prefHeight="50.0" text="Flip Card or Press Enter" onAction="#flip" />
       </HBox>
    </bottom>
    <center>
        <SplitPane orientation="VERTICAL" prefHeight="200.0" prefWidth="160.0" BorderPane.alignment="CENTER">
-           <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Text">
+           <Text fx:id="termText" strokeType="OUTSIDE" strokeWidth="0.0" text="Term">
                <font>
                    <Font size="36.0" />
                </font>
            </Text>
-           <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Text">
+           <Text fx:id="definitionText" strokeType="OUTSIDE" strokeWidth="0.0">
                <font>
                    <Font size="26.0" />
                </font>

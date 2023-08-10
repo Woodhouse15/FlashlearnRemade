@@ -6,6 +6,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.scene.input.KeyCode;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import java.io.IOException;
@@ -22,6 +23,18 @@ public class SignUpController {
     @FXML
     public Text signUpGuide;
 
+    @FXML
+    public void initialize(){
+        signUpButton.getScene().setOnKeyPressed(e -> {
+            if(e.getCode() == KeyCode.ENTER){
+                try {
+                    signUp();
+                } catch (IOException ex) {
+                    throw new RuntimeException(ex);
+                }
+            }
+        });
+    }
 
     @FXML
     protected void back() throws IOException {
