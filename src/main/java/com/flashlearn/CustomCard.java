@@ -3,7 +3,8 @@ package com.flashlearn;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.TextArea;
-import javafx.scene.layout.GridPane;
+import javafx.scene.layout.*;
+import javafx.scene.paint.Color;
 
 import java.io.IOException;
 
@@ -23,6 +24,8 @@ public class CustomCard extends GridPane {
         } catch (IOException exception) {
             throw new RuntimeException(exception);
         }
+        this.setBorder(new Border(new BorderStroke(Color.BLACK,
+                BorderStrokeStyle.SOLID, CornerRadii.EMPTY, BorderWidths.DEFAULT)));
     }
 
     public String getTermText(){
