@@ -7,6 +7,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.input.KeyCode;
+import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
@@ -23,10 +24,12 @@ public class LoginController {
     @FXML
     public TextField usernameField;
     public Text loginHelp;
+    @FXML
+    public VBox vbox;
 
     @FXML
     public void initialize(){
-        loginButton.getScene().setOnKeyPressed(e -> {
+        vbox.setOnKeyPressed(e -> {
             if(e.getCode() == KeyCode.ENTER){
                 try {
                     login();
