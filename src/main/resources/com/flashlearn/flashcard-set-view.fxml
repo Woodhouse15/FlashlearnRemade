@@ -27,7 +27,7 @@
       <bottom>
           <HBox fx:id="buttonHolder" alignment="CENTER" prefHeight="80.0" prefWidth="600.0" spacing="15.0" BorderPane.alignment="CENTER">
                 <Button fx:id="backButton" mnemonicParsing="false" onAction="#back" prefHeight="50.0" prefWidth="68.0" text="Back" />
-              <Button fx:id="learnSetButton" mnemonicParsing="false" prefHeight="50.0" text="Learn Set" />
+              <Button fx:id="learnSetButton" mnemonicParsing="false" prefHeight="50.0" text="Learn Set" onAction="#learnSet" />
               <Button fx:id="editCardsButton" mnemonicParsing="false" prefHeight="50.0" text="Edit Cards" onAction="#editSet" />
               <Button fx:id="editSetNameButton" mnemonicParsing="false" onAction="#editSetName" prefHeight="50.0" text="Edit Set Name" />
               <Button fx:id="deleteSetButton" mnemonicParsing="false" onAction="#deleteSet" prefHeight="50.0" text="Delete Set" />

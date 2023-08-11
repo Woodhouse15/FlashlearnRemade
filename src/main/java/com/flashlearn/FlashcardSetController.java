@@ -50,6 +50,9 @@ public class FlashcardSetController {
             data.add(card);
         }
         cardHolder.getChildren().addAll(data);
+        if(cards.keySet().isEmpty()){
+            learnSetButton.setDisable(true);
+        }
     }
 
     public void back() throws IOException {
@@ -187,5 +190,14 @@ public class FlashcardSetController {
             dialog.setScene(dialogScene);
             dialog.show();
         }
+    }
+
+    public void learnSet() throws IOException {
+        Stage stage = (Stage) cardHolder.getScene().getWindow();
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("learn-mode-view.fxml"));
+        Scene scene = new Scene(fxmlLoader.load(), 600, 400);
+        stage.setTitle("Flashlearn");
+        stage.setScene(scene);
+        stage.show();
     }
 }

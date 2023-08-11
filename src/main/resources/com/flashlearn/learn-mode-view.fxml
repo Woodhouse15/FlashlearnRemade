@@ -10,7 +10,7 @@
    </bottom>
    <center>
        <SplitPane orientation="VERTICAL" prefHeight="200.0" prefWidth="160.0" BorderPane.alignment="CENTER">
-           <Text fx:id="termText" strokeType="OUTSIDE" strokeWidth="0.0" text="Term">
+           <Text fx:id="termText" strokeType="OUTSIDE" strokeWidth="0.0">
                <font>
                    <Font size="36.0" />
                </font>
