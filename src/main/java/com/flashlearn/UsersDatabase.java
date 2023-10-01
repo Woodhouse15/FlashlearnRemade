@@ -133,10 +133,31 @@ public final class UsersDatabase {
     public static void updateSet(HashMap<String,String> cards){
         MongoDatabase mongoDatabase = client.getDatabase("Sets");
         MongoCollection<Document> collection = mongoDatabase.getCollection(user + "_" + currentSetName);
-        collection.deleteMany(new Document());
+        FindIterable<Document> iterable =  collection.find();
+        for(Document i : iterable){
+            String term = (String) i.get("Term");
+            //Term exists but definition is different
+            if(cards.containsKey(term) && !(cards.get(term).equals(i.get("Definition")))){
+                collection.updateOne(i,Updates.set("Definition", cards.get(term)));
+                cards.remove(term);
+            }
+            //Term doesn't exist
+            else if(!cards.containsKey(term)){
+                collection.deleteOne(i);
+                cards.remove(term);
+            }
+        }
         for(String i : cards.keySet()){
             addCard(i,cards.get(i));
         }
+
+    }
+
+    public static void addDifficulty(String term, String definition, int difficulty){
+        MongoDatabase mongoDatabase = client.getDatabase("Sets");
+        MongoCollection<Document> collection = mongoDatabase.getCollection(user + "_" + currentSetName);
+        Bson filter = Filters.and(Filters.eq("Term",term),Filters.eq("Definition",definition));
+
     }
 
 }
