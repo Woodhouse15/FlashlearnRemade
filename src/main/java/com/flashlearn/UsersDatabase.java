@@ -153,11 +153,11 @@ public final class UsersDatabase {
 
     }
 
-    public static void addDifficulty(String term, String definition, int difficulty){
+    public static void addDifficulty(String term, String definition, Difficulty difficulty){
         MongoDatabase mongoDatabase = client.getDatabase("Sets");
         MongoCollection<Document> collection = mongoDatabase.getCollection(user + "_" + currentSetName);
         Bson filter = Filters.and(Filters.eq("Term",term),Filters.eq("Definition",definition));
-
+        collection.updateOne(filter,Updates.set("Difficulty", difficulty));
     }
 
 }
