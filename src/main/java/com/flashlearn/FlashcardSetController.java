@@ -41,7 +41,7 @@ public class FlashcardSetController {
     @FXML
     public void initialize(){
         flashcardTitle.setText(UsersDatabase.getCurrentSetName());
-        HashMap<String,String> cards = UsersDatabase.getSetData();
+        HashMap<String,String> cards = UsersDatabase.getSetData(false);
         for(String i : cards.keySet()){
             CustomCard card = new CustomCard();
             card.setTermText(i);

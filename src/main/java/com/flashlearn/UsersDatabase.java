@@ -154,6 +154,9 @@ public final class UsersDatabase {
                 collection.deleteOne(i);
                 cards.remove(term);
             }
+            else if(cards.containsKey(term) && cards.get(term).equals(i.get("Definition"))){
+                cards.remove(term);
+            }
         }
         for(String i : cards.keySet()){
             addCard(i,cards.get(i));
