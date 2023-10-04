@@ -41,7 +41,7 @@ public class LearnModeController {
                 flip();
             }
         });
-        cards = UsersDatabase.getSetData();
+        cards = UsersDatabase.getSetData(true);
         terms = new ArrayList<>(cards.keySet());
         Collections.shuffle(terms);
         flipButton.setPrefHeight(50.0);
@@ -68,10 +68,10 @@ public class LearnModeController {
     public void answer(ActionEvent actionEvent) {
         String val = ((Node) actionEvent.getSource()).getId();
         switch (val) {
-            case "easy" -> System.out.println("Easy");
-            case "medium" -> System.out.println("Not bad");
-            case "hard" -> System.out.println("Not great");
-            case "again" -> System.out.println("Too hard");
+            case "easy" -> UsersDatabase.addDifficulty(currentTerm,definitionText.getText(),Difficulty.EASY);
+            case "medium" -> UsersDatabase.addDifficulty(currentTerm,definitionText.getText(),Difficulty.MEDIUM);
+            case "hard" -> UsersDatabase.addDifficulty(currentTerm,definitionText.getText(),Difficulty.HARD);
+            case "again" -> UsersDatabase.addDifficulty(currentTerm,definitionText.getText(),Difficulty.AGAIN);
         }
         buttonHolder.getChildren().clear();
         newCard();

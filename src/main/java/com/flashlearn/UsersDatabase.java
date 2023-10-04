@@ -85,12 +85,20 @@ public final class UsersDatabase {
         userInfo.insertOne(doc);
     }
 
-    public static HashMap<String, String> getSetData(){
+    public static HashMap<String, String> getSetData(boolean... flag){
         HashMap<String,String> data = new HashMap<>();
         MongoCollection<Document> mongoCollection = client.getDatabase("Sets").getCollection(user + "_" + currentSetName);
         FindIterable<Document> iterable =  mongoCollection.find();
-        for(Document i : iterable){
-            data.put(i.getString("Term"), i.getString("Definition"));
+        if(flag[0]){
+            for(Document i : iterable){
+                data.put(i.getString("Term"), i.getString("Definition"));
+            }
+        }else{
+            for(Document i : iterable){
+                if(i.get("Difficulty") != Difficulty.EASY){
+                    data.put(i.getString("Term"), i.getString("Definition"));
+                }
+            }
         }
         return data;
     }
