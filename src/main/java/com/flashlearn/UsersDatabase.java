@@ -107,6 +107,7 @@ public final class UsersDatabase {
         MongoCollection<Document> mongoCollection = client.getDatabase("Sets").getCollection(user + "_" + currentSetName);
         Document document = new Document("Term",term);
         document.append("Definition",definition);
+        document.append("Difficulty",Difficulty.AGAIN);
         mongoCollection.insertOne(document);
     }
 
